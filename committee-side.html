@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>Committee Member</title>
+    </head>
+    <style>
+        #maintable
+        {
+            border:1px solid white;
+            width: 100%
+        }
+        #top
+        {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #sections
+        {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .sec1
+        {
+            cursor: pointer;
+        }
+        #grievances
+        {
+            border:1px solid #eeeded;;
+            width: 100%;
+            border-radius: 7pt;
+            background-color: #eeeded;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #contact-stu
+        {
+            cursor: pointer;
+
+        }
+    </style>
+    <script>
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        function sectionover(n)
+        {
+            document.getElementById(n).style.color="#eeeded";
+            document.getElementById(n).style.backgroundColor="#5e6064";
+        }
+        function sectionout(n)
+        {
+            document.getElementById(n).style.color="black";
+            document.getElementById(n).style.backgroundColor="white";
+        }
+
+    </script>
+    <body>
+        <img src="https://www.bitmesra.ac.in/SiteLogo/BIT-Mesra.png" alt="logo">
+        <br><br>
+        <table id ="top">
+        <tr>
+            <td><label for="date">Sort by date</label></td>
+            <td><select id="date">
+            <option value="Descending">Descending</option>
+            <option value="Ascending">Ascending</option>
+            </select></td>
+            
+            <td><label for="category">Select grievance category</label></td>
+            <td><select id="category">
+                <option value="All">All</option>
+                <option value="Admission">Admission</option>
+                <option value="Finance">Finance</option>
+                <option value="Examination">Examination</option>
+                <option value="Lecture Timetable/Learning">Lecture Timetable/Learning</option>
+                <option value="Paper Re-evaluation">Paper Re-evaluation</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Ragging">Ragging</option>
+                <option value="Sexual Harassment">Sexual Harassment</option>
+                <option value="Any other">Any other</option>
+            </select></td>
+        </tr>
+
+        <table id="maintable">
+            <tr><td>
+                <table id="sections">
+                    <tr><td class="sec1" id="1" onmouseover="sectionover(1)" onmouseout="sectionout(1)">Complaints Recieved</td></tr>
+                    <tr><td class="sec1" id="2" onmouseover="sectionover(2)" onmouseout="sectionout(2)">Starred</td></tr>
+                    <tr><td class="sec1" id="3" onmouseover="sectionover(3)" onmouseout="sectionout(3)">Archived</td></tr>
+                </table>
+            </td>
+            <td>
+                <table id="grievances">
+                    <tr>
+                        <td>Date: 05-02-2024</td>
+                        <td>Grievance type: Admission</td>
+                    </tr>        
+                    <tr>
+                        <td>Grievance description
+                        <br><br><a herf="C:\Users\Asus\Desktop\SEP Lab Project\Read More">Read more</a></td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Roll number</td>
+                        <td>Branch</td>
+                    </tr>
+                    <!--<tr><td></td><td></td>
+                        <td><input type="button" id="contact-stu" value="Contact Student"></input></td>
+                    </tr>-->
+                </table>
+            </td></tr>
+    </table>
+    <br>
+    </table>
+    <br>
+    </body>
+</html>

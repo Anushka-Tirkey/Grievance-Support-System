@@ -1,0 +1,150 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Grievance Solution System</title>
+</head>
+<body>
+    <img src="https://www.bitmesra.ac.in/SiteLogo/BIT-Mesra.png" alt="logo">
+    <center>COMPLAIN TO COMMITTEE</center>
+    <table border="0" cellpadding="10" width="100%" height="100%">
+    <form>
+    <tr>
+        <td>Name</td>
+        <td><input type="text"></input></td>
+    </tr>
+    <tr>
+        <td>Roll Number</td>
+        <td><input type="text"></input></td>
+    </tr>
+    <tr>
+      <td>
+      <div class="dropdown">
+          <label for="program">Select Program</label></td>
+          <td><select id="program">
+            <option value="sel">--select--</option>
+            <option value="btech">B.Tech</option>
+            <option value="mtech">M. Tech</option>
+            <option value="phd">PhD</option>
+            <option value="msc">M.Sc</option>
+            <option value="imsc">Integrated M.Sc</option>
+          </select></td>
+        </div>
+      </td>
+  </tr>
+    <tr>
+      <td>
+      <div class="dropdown">
+        <label for="course">Select Course:</label></td>
+          <td><select id="course" onchange="updateOptions()">
+            <option value="sel">--select--</option>
+            <option value="arch">Architecture and Planning</option>
+            <option value="biotech">Bioengineering and Biotechnology</option>
+            <option value="chem1">Chemical Engineering</option>
+            <option value="chem2">Chemistry</option>
+            <option value="civil">Civil Engineering</option>
+            <option value="cse">Computer Science and Engineering</option>            
+            <option value="food">Food Engineering and Technology</option>
+            <option value="eee">Electrical and Electronics Engineering/option>
+            <option value="ece">Electronics and Communication Engineering</option>
+            <option value="hmct">Hotel Management and Catering Technology</option>
+            <option value="hss">Humanities and Social Sciences</option>
+            <option value="mba">Management</option>
+            <option value="maths">Mathematics</option>
+            <option value="mech">Mechanical Engineering</option>
+            <option value="pharma">Pharmaceutical Sciences and Technology</option>
+            <option value="phy">Physics</option>
+            <option value="prod">Production and Industrial Engineering</option>
+            <option value="qeds">Quantitative Economics and Data Science</option>
+            <option value="rems">Remote Sensing</option>
+          </select></td>
+      </div>
+      </td>
+        <!--<tr>
+          <td><div class="dropdown">
+            <label for="program">Select Program:</label></td>
+            <td><select id="program">
+              Options will be dynamically populated here
+            </select></td>
+          </div>
+          </tr>-->
+    </tr>
+    <tr>
+        <td>Phone Number</td>
+        <td><input type="text" maxlength="10" minlength="10"></input></td>
+    </tr>
+    <tr>
+        <td>Email-id</td>
+        <td><input type="text"></input></td>
+    </tr>
+    <tr>
+        <td>Grievance Category</td>
+        <td>
+            <input type="checkbox" id="adm" value="adm">Admission</input>
+            <input type="checkbox" id="fin" value="fin">Finance</input>
+            <input type="checkbox" id="exam" value="exam">Examination</input>
+            <input type="checkbox" id="time" value="time">Lecture Timetable/Learning</input>
+            <input type="checkbox" id="reeval" value="reeval">Paper Re-evaluation</input>
+            <input type="checkbox" id="hostel" value="hostel">Hostel</input>
+            <input type="checkbox" id="ragging" value="ragging">Ragging</input>
+            <input type="checkbox" id="harass" value="harass">Sexual Harassment</input>
+            <input type="checkbox" id="other" value="other">Any Other</input>
+        </td>
+    </tr>
+    <tr>
+        <td>Elaborate your grievance</td>
+        <td><input type="textarea" id="text2" name="text2" rows="100" cols="100"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="Submit" value="SUBMIT"></input><input type="button" value="CLEAR"></td></tr>
+    </form>
+</table>    
+
+<script>
+    // Define options for different courses
+    /*const courseOptions = {
+        arch:["B.Tech", "MUP"],
+        biotech: ["B.Tech Biotechnology", "M.Tech Biotechnology", "M.Sc Biotechnology"],
+        chem1:["B.Tech", "M.Tech"],
+        chem2: ["Integrated M.Sc"],
+        civil: ["B.Tech", "M.Tech"],
+        cse: ["B.Tech CSE", "B.Tech IT", "B.Tech AI/ML", "M.Tech CSE", "MCA"],
+        food: [],
+        eee: [],
+        ece: [],
+        hmct: [],
+        hss: [],
+        mba: [],
+        maths: [],
+        mech: [],
+        pharma: [],
+        phy: [],
+        prod: [],
+        qeds: [],
+        rems: []
+    };*/
+
+    function updateOptions() {
+      // Get selected course
+      const selectedCourse = document.getElementById("course").value;
+
+      // Get the program dropdown
+      const programDropdown = document.getElementById("program");
+
+      // Clear existing options
+      programDropdown.innerHTML = "";
+
+      // Populate options based on the selected course
+      courseOptions[selectedCourse].forEach(option => {
+        const optionElement = document.createElement("option");
+        optionElement.text = option;
+        programDropdown.add(optionElement);
+      });
+    }
+
+    // Initial update to populate options based on the default selection
+    updateOptions();
+  </script>
+
+</body>
+</html>
