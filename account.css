@@ -1,0 +1,105 @@
+#navi {
+    height: 150px;
+    background-color: rgb(207, 237, 232);
+    border-radius: 10px;
+    border-top-color: red;
+    border-left-color: yellow;
+}
+
+
+#login {
+    margin: 30px 0 30px 0;
+    border-width: 2px;
+    border-radius: 20px;
+    border-right-color: rgb(179, 255, 0);
+    border-bottom-color: rgb(244, 8, 8);
+    background-color: rgba(219, 4, 122, 0.085);
+    height: 400px;
+    width: 600px;
+    margin-left: 400px;
+    margin-right: 300px;
+
+
+}
+
+.acc {
+    width: 100%;
+    background-color: rgb(195, 214, 195);
+    border-radius: 10px;
+    border: 3px;
+    border-left-color: black;
+    border-top-color: crimson;
+
+}
+
+.acc>a {
+    text-decoration: none;
+    text-align: center;
+
+
+}
+
+#first {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(216, 203, 180);
+    height: 40px;
+    font-size: 30px;
+}
+
+#logo {
+    background-position: no-repeat;
+    background-size: cover;
+    background-image: url("logo.jpg");
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+
+}
+
+
+.login1>input {
+    border-radius: 10px;
+    border: 1px solid red;
+    width: 50%;
+    margin-left: 200px;
+    margin-right: 600px;
+}
+
+.submit>input {
+
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 100pc;
+    border-width: 3px;
+    border-left-color: crimson;
+    border-bottom-color: pink;
+}
+
+input:hover,
+.acc:hover,
+#first:hover {
+    background-color: rgb(39, 183, 171);
+    box-shadow: 10pc;
+    border-color: pink;
+    border-style: dotted;
+    transform: scale(1.2, 1.2);
+
+}
+
+input:active,
+.acc:active,
+#first:active {
+    background-color: rgb(39, 183, 171);
+    box-shadow: 10pc;
+    border-color: pink;
+
+}
+
+#login:hover {
+    background-color: rgb(209, 210, 194);
+}
+
+body {
+    background-color: rgba(255, 0, 0, 0.168);
+}
