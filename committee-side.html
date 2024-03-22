@@ -1,116 +1,121 @@
-<html>
-    <head>
-        <title>Committee Member</title>
-    </head>
-    <style>
-        #maintable
-        {
-            border:1px solid white;
-            width: 100%
-        }
-        #top
-        {
-            width: 70%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #sections
-        {
-            width: 100%;
-            border-radius: 5px;
-        }
-        .sec1
-        {
-            cursor: pointer;
-        }
-        #grievances
-        {
-            border:1px solid #eeeded;;
-            width: 100%;
-            border-radius: 7pt;
-            background-color: #eeeded;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #contact-stu
-        {
-            cursor: pointer;
-
-        }
-    </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Committee Member</title>
+    <link rel="stylesheet" href="committee-side.css">
+</head>
+<body>
+    <img src="https://www.bitmesra.ac.in/SiteLogo/BIT-Mesra.png" alt="logo">
+    <img src="https://icon-library.com/images/account-icon/account-icon-19.jpg" width="50px" height = "50px" align = "right">
+    <br><br>
+    <div id="top">
+        <label for="date">Sort by date</label>
+        <input type="date" id="birthday" name="birthday" onchange="sortGrievancesByDate()">
+        <label for="category">Select grievance category</label>
+        <select id="category" onchange="filterGrievancesByCategory()">
+            <option value="All">All</option>
+            <option value="Admission">Admission</option>
+            <option value="Finance">Finance</option>
+            <option value="Examination">Examination</option>
+            <option value="Lecture Timetable/Learning">Lecture Timetable/Learning</option>
+            <option value="Paper Re-evaluation">Paper Re-evaluation</option>
+            <option value="Hostel">Hostel</option>
+            <option value="Ragging">Ragging</option>
+            <option value="Sexual Harassment">Sexual Harassment</option>
+            <option value="Any other">Any other</option>
+        </select>
+    </div>
+    <div id="mid">
+    <!--<div id = "sections">
+        <table>
+            <tr ><td class = "sec" onmouseover="sectionover(1)" onmouseout="sectionout(1)">Starred</td></tr>
+            <tr class = "sec" onmouseover="sectionover(2)" onmouseout="sectionout(2)"><td>Deleted</td></tr>
+            <tr class = "sec" onmouseover="sectionover(3)" onmouseout="sectionout(3)"><td>Read</td></tr>
+            <tr class = "sec" onmouseover="sectionover(4)" onmouseout="sectionout(4)"><td>Replied</td></tr>
+        </table>-->
+        
+        <table id = "sections">
+            <tr class="sec" id="starred"><td onmouseover="sectionover('starred')" onmouseout="sectionout('starred')">Starred</td></tr>
+            <tr class="sec" id="deleted"><td onmouseover="sectionover('deleted')" onmouseout="sectionout('deleted')">Deleted</td></tr>
+            <tr class="sec" id="read"><td onmouseover="sectionover('read')" onmouseout="sectionout('read')">Read</td></tr>
+            <tr class="sec" id="replied"><td onmouseover="sectionover('replied')" onmouseout="sectionout('replied')">Replied</td></tr>
+        </table>
+    </div>
+    <div id="container">
+        <table id="grievances">
+            <tr><td><div><p>Date: 22-03-2024</p>
+                        <p style="text-align: right;">Grievance type: Admission</p>
+                        <p>Grievance description</p>
+                        <p style="display: flex; justify-content: space-between;">
+                            <span>Name: Anushka</span>
+                            <span>Roll number: 29</span>
+                            <span>Branch: Branch</span>
+                        </p>
+                    <p><button type = "button">Contact Student</button></p>
+                    </div></td></tr>
+            <tr>
+                <td>
+                    <div>
+                        <p>Date: 21-03-2024</p>
+                        <p style="text-align: right;">Grievance type: Finance</p>
+                        <p>Grievance description</p>
+                        <p style="display: flex; justify-content: space-between;">
+                            <span>Name: Aayushi</span>
+                            <span>Roll number: 29</span>
+                            <span>Branch: Branch</span>
+                        </p>
+                    <p><button type = "button">Contact Student</button></p>
+                    </div>
+                </td>
+            </tr>
+            <!-- Other grievance entries -->
+        </table>
+    </div>
+</div>
     <script>
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-
-        function sectionover(n)
-        {
-            document.getElementById(n).style.color="#eeeded";
-            document.getElementById(n).style.backgroundColor="#5e6064";
-        }
-        function sectionout(n)
-        {
-            document.getElementById(n).style.color="black";
-            document.getElementById(n).style.backgroundColor="white";
+         function sectionover(id) 
+         {
+            var element = document.getElementById(id);
+            element.style.backgroundColor = "white";
+            element.style.cursor = "pointer";
         }
 
+        function sectionout(id) 
+        {
+            var element = document.getElementById(id);
+            element.style.backgroundColor = "";
+            element.style.cursor = "";
+        }
+
+        function sortGrievancesByDate() {
+            var grievancesContainer = document.getElementById('grievances');
+            var grievances = Array.from(grievancesContainer.querySelectorAll('div'));
+            grievances.sort(function(a, b) {
+                var dateA = new Date(a.querySelector('p:nth-of-type(1)').innerText.split(':')[1].trim());
+                var dateB = new Date(b.querySelector('p:nth-of-type(1)').innerText.split(':')[1].trim());
+                return dateA - dateB;
+            });
+            grievances.forEach(function(grievance) {
+                grievancesContainer.appendChild(grievance);
+            });
+        }
+
+        function filterGrievancesByCategory() {
+            var selectedCategory = document.getElementById('category').value;
+            var grievances = document.querySelectorAll('#grievances div');
+
+            grievances.forEach(function(grievance) {
+                var category = grievance.querySelector('p:nth-of-type(2)').innerText.split(':')[1].trim();
+                if (selectedCategory === 'All' || category === selectedCategory) {
+                    grievance.style.display = '';
+                } else {
+                    grievance.style.display = 'none';
+                }
+            });
+        }
     </script>
-    <body>
-        <img src="https://www.bitmesra.ac.in/SiteLogo/BIT-Mesra.png" alt="logo">
-        <br><br>
-        <table id ="top">
-        <tr>
-            <td><label for="date">Sort by date</label></td>
-            <td><select id="date">
-            <option value="Descending">Descending</option>
-            <option value="Ascending">Ascending</option>
-            </select></td>
-            
-            <td><label for="category">Select grievance category</label></td>
-            <td><select id="category">
-                <option value="All">All</option>
-                <option value="Admission">Admission</option>
-                <option value="Finance">Finance</option>
-                <option value="Examination">Examination</option>
-                <option value="Lecture Timetable/Learning">Lecture Timetable/Learning</option>
-                <option value="Paper Re-evaluation">Paper Re-evaluation</option>
-                <option value="Hostel">Hostel</option>
-                <option value="Ragging">Ragging</option>
-                <option value="Sexual Harassment">Sexual Harassment</option>
-                <option value="Any other">Any other</option>
-            </select></td>
-        </tr>
-
-        <table id="maintable">
-            <tr><td>
-                <table id="sections">
-                    <tr><td class="sec1" id="1" onmouseover="sectionover(1)" onmouseout="sectionout(1)">Complaints Recieved</td></tr>
-                    <tr><td class="sec1" id="2" onmouseover="sectionover(2)" onmouseout="sectionout(2)">Starred</td></tr>
-                    <tr><td class="sec1" id="3" onmouseover="sectionover(3)" onmouseout="sectionout(3)">Archived</td></tr>
-                </table>
-            </td>
-            <td>
-                <table id="grievances">
-                    <tr>
-                        <td>Date: 05-02-2024</td>
-                        <td>Grievance type: Admission</td>
-                    </tr>        
-                    <tr>
-                        <td>Grievance description
-                        <br><br><a onclick="location.href='https://anushka-tirkey.github.io/Grievance-Support-System/Read-more.html'">Read more</a></td>
-                    </tr>
-                    <tr>
-                        <td>Name</td>
-                        <td>Roll number</td>
-                        <td>Branch</td>
-                    </tr>
-                    <!--<tr><td></td><td></td>
-                        <td><input type="button" id="contact-stu" value="Contact Student"></input></td>
-                    </tr>-->
-                </table>
-            </td></tr>
-    </table>
-    <br>
-    </table>
-    <br>
-    </body>
+</body>
 </html>
+
