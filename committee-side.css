@@ -1,0 +1,45 @@
+#container {
+    width: 80%;
+    flex: 0 0 80%;
+    margin: auto;
+    border: 1px solid #eeeded;
+    border-radius: 7pt;
+    background-color: #eeeded;
+    float: right;
+}
+
+#mid
+{
+    justify-content: space-between;
+}
+
+.sec
+{
+    cursor: pointer;
+}
+
+#sections{
+    background-color: #eeeded;
+    flex: 0 0 15%;
+    width: 18%;
+    float: left;
+}
+#top {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#grievances {
+    width: 100%;
+}
+
+#grievances div {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+#grievances div p {
+    margin: 0;
+    padding: 5px 0;
+}
