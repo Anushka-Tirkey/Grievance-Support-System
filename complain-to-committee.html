@@ -3,92 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Student Grievance Solution System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        #container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #ff0000;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        input[type="text"],
-        textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-
-        select {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-
-        input[type="submit"],
-        input[type="button"] {
-            padding: 10px 20px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 3px;
-            background-color: #ff0000;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover,
-        input[type="button"]:hover {
-            background-color: #cc0000;
-        }
-
-        label {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .dropdown {
-            display: inline-block;
-        }
-
-        .error {
-            color: #ff0000;
-        }
-    </style>
+    <link rel="stylesheet" href="complain-to-committee.css">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
 </head>
 <body>
     <div id="container">
-        <img src="https://www.bitmesra.ac.in/SiteLogo/BIT-Mesra.png" alt="logo" style="display:block;margin:auto;">
+        <img src="https://www.bitmesra.ac.in/SiteLogo/BIT-Mesra.png" alt="logo">
+        <img src="https://icon-library.com/images/account-icon/account-icon-19.jpg" width="50px" height = "50px" align = "right">
         <h1>COMPLAIN TO GRIEVANCE COMMITTEE</h1>
-        <form id="submissionForm">
+        <form id="submissionForm" onsubmit="return validateForm()">
             <table cellpadding="10">
                 <tr>
                     <td><label for="name">Name</label></td>
@@ -99,24 +22,43 @@
                     <td><input type="text" id="roll"></td>
                 </tr>
                 <tr>
-                    <td><label for="course">Select Course:</label></td>
+                    <td><label for="course">Course</label></td>
                     <td>
                         <div class="dropdown">
-                            <select id="course" onchange="updateOptions()">
+                            <select id="course">
                                 <option value="sel">--select--</option>
                                 <option value="arch">Architecture and Planning</option>
-                                <!-- Add other options -->
+                                <option value="bio_eng">Bio-Engineering and Biotechnology</option>
+                                <option value="civil_eng">Civil Engineering</option>
+                                <option value="chem_eng">Chemical Engineering</option>
+                                <option value="plastic_polymer_eng">Chemical Engineering (Plastic and Polymer)</option>
+                                <option value="cs_eng">Computer Science & Engineering</option>
+                                <option value="ee_eng">Electrical & Electronics Engineering</option>
+                                <option value="ec_eng">Electronics & Communication Engineering</option>
+                                <option value="mech_eng">Mechanical Engineering</option>
+                                <option value="prod_eng">Production Engineering</option>
+                                <option value="pharma">M. Pharma & B.Pharma</option>
+                                <option value="it">Information Technology</option>
+                                <option value="imsc_math_comp">IMSc Math & Computing</option>
+                                <option value="mba">MBA</option>
+                                <option value="mca">MCA</option>
+                                <option value="bachelor_arch">Bachelor of Architecture</option>
+                                <option value="bachelor_food_tech">Bachelor of Food Technology</option>
                             </select>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="program">Select Program</label></td>
+                    <td><label for="program">Program</label></td>
                     <td>
                         <div class="dropdown">
                             <select id="program">
                                 <option value="sel">--select--</option>
-                                <!-- Add other options -->
+                                <option value="btech">B. Tech</option>
+                                <option value="mtech">M. Tech</option>
+                                <option value="msc">MSc</option>
+                                <option value="imsc">IMSc</option>
+                                <option value="phd">PhD</option>
                             </select>
                         </div>
                     </td>
@@ -133,10 +75,17 @@
                     <td><label>Grievance Category</label></td>
                     <td>
                         <table cellpadding="5">
-                            <tr>
-                                <td><input type="checkbox" id="adm" value="adm"><label for="adm">Admission</label></td>
-                                <!-- Add other checkbox options -->
-                            </tr>
+                            <tr><td><input type="radio" id="adm" name = "cat" value="adm"><label for="adm">Admission</label></td>
+                                <td><input type="radio" id="fin" name = "cat" value="fin"><label for="fin">Finance</label></td>
+                                <td><input type="radio" id="exam" name = "cat" value="exam"><label for="exam">Examination</label></td></tr>
+                                
+                                <tr><td><input type="radio" id="lec" name = "cat" value="lec"><label for="lec">Lecture timetable/learning</label></td>
+                                <tr><td><input type="radio" id="reval" name = "cat" value="reval"><label for="reval">Paper Re-evaluation</label></td>
+                                <td><input type="radio" id="hostel" name = "cat" value="hostel"><label for="hostel">Hostel</label></td> </tr>
+                                
+                                <tr><td><input type="radio" id="rag" name = "cat" value="rag"><label for="rag">Ragging</label></td>
+                                <td><input type="radio" id="har" name = "cat" value="har"><label for="har">Sexual Harassment</label></td>
+                                <tr><td><input type="radio" id="other" name = "cat" value="other"><label for="other">Any other</label></td></tr>
                         </table>
                     </td>
                 </tr>
@@ -155,12 +104,39 @@
     </div>
 
     <script>
-        function updateOptions() {
-            const selectedCourse = document.getElementById("course").value;
-            const programDropdown = document.getElementById("program");
-            programDropdown.innerHTML = "";
-            // Populate options based on the selected course
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var roll = document.getElementById("roll").value;
+            var course = document.getElementById("course").value;
+            var program = document.getElementById("program").value;
+            var phno = document.getElementById("phno").value;
+            var email = document.getElementById("email").value;
+            var grievanceCategory = document.querySelector('input[name="cat"]:checked');
+            var desc = document.getElementById("desc").value;
+
+            if (name.trim() == "" || roll.trim() == "" || course == "sel" || program == "sel" || phno.trim() == "" || email.trim() == "" || grievanceCategory == null || desc.trim() == "") {
+                alert("All fields are required.");
+                return false;
+            }
+
+            // Validate phone number format
+            var phnoPattern = /^\d{10}$/;
+            if (!phno.match(phnoPattern)) {
+                alert("Phone number should be a 10-digit number.");
+                return false;
+            }
+
+            // Validate email format
+            var emailPattern = /^[^\s@]+@bitmesra\.ac\.in$/;
+            if (!email.match(emailPattern)) {
+                alert("Your eail address should end with @bitmesra.ac.in");
+                return false;
+            }
+
+            // If all validations pass, return true to submit the form
+            return true;
         }
+    </script>
     </script>
 </body>
 </html>
