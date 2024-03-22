@@ -1,11 +1,39 @@
+body{
+    font-size: 15px;
+    font-family: "Gantari", sans-serif !important;
+}
+
 #container {
     width: 80%;
-    flex: 0 0 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px;
+    flex-direction: row;
     margin: auto;
-    border: 1px solid #eeeded;
-    border-radius: 7pt;
+    margin-bottom: 30px !important;
+}
+.button-hai-bhai{
+
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px !important;
+    margin: 0 !important;
+}
+.card-hai{
     background-color: #eeeded;
-    float: right;
+    padding: 15px !important;
+    border-radius: 10px !important;
+    height: auto;
+}
+.head-of-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 7px !important;
+    margin: 0 !important;
 }
 
 #mid
@@ -42,4 +70,43 @@
 #grievances div p {
     margin: 0;
     padding: 5px 0;
+}
+
+.left-view{
+    height: 50vh !important;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px !important;
+}
+.sec{
+    font-size: 30px !important;
+    border-radius: 15px !important;
+    width: 90% !important;
+}
+.sec:hover{
+    background-color: white !important;
+}
+.items{
+    padding: 15px !important;
+    text-align: center !important;
+    /* border-radius: 15px !important; */
+}
+.navbar{
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.container{
+    margin-bottom: 25px !important;
+}
+#top{
+    margin-left: 20% !important;
+    width: 80% !important;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
